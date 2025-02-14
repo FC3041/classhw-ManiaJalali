@@ -1,6 +1,5 @@
 using System;
-
-public class power
+public class pow
 {
     public static int power(int x, int y)
     {
@@ -13,7 +12,7 @@ public class power
         return j;
     }
 
-    static void main() 
+    static void Main() 
     { 
         int result = power(2, 3); 
         Console.Write(result);
