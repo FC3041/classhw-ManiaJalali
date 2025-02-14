@@ -1,5 +1,7 @@
 using System;
 
+namespace firstsample
+{
 class RocketShip
 {
     static void Main()
@@ -23,4 +25,5 @@ class RocketShip
         Console.WriteLine(" ///|\\\\\\");
         Console.WriteLine("////|\\\\\\\\");
     }
+}
 }

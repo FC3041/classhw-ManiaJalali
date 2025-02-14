@@ -1,5 +1,7 @@
 using System;
 
+namespace firstsample
+{
 public class Program
 {
     public static void Main()
@@ -41,4 +43,5 @@ public class Program
 
         return true;
     }
+}
 }

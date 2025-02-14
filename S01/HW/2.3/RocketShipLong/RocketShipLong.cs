@@ -1,5 +1,7 @@
 using System;
 
+namespace firstsample
+{
 class Rocket
 {
     public static void Cone(int l)
@@ -63,4 +65,5 @@ class Rocket
         Line(7);
         Cone(5);
     }
+}
 }

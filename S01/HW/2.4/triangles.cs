@@ -1,5 +1,7 @@
 using System;
 
+namespace firstsample
+{
 public class Triangle
 {
     public static void print_left_triangle(int n, char character) {
@@ -29,4 +31,5 @@ public class Triangle
         print_right_triangle(5,'*'); //part3
         print_right_triangle(20,'*'); //part3
     }
+}
 }
