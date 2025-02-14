@@ -1,5 +1,7 @@
 using System;
 
+namespace stats
+{
 class Stats
 {
     static void Main()
@@ -30,4 +32,5 @@ class Stats
         Console.WriteLine("Maximum: " + max);
         
     }
+}
 }

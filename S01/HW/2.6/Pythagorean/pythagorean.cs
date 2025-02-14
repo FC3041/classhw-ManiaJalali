@@ -1,5 +1,7 @@
 using System;
 
+namespace firstample
+{
 public class Pyth
 {
     public static void Pythagorean_Triples()
@@ -12,10 +14,11 @@ public class Pyth
                 { 
                     if ((a * a + b * b) == c * c)
                     { 
-                        Console.Write("a\n" + a +"b\n" + b + "c\n" + c);
+                        Console.Write("\na : " + a +"\nb : " + b + "\nc : " + c);
     }}}}}       
     static void Main()
     {
         Pythagorean_Triples();
     }
+}
 }

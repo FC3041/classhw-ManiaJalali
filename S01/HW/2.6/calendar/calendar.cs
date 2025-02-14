@@ -1,5 +1,7 @@
 using System;
 
+namespace firstsample
+{
 class Calendar
 {
     public static void print_month(int monthNumber, string[] months)
@@ -18,4 +20,5 @@ class Calendar
             print_month(i, months);
         }
     }
+}
 }

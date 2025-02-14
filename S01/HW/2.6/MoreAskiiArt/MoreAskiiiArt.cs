@@ -5,13 +5,13 @@ namespace firstsample
     public class MoreAskiArt
     {
         public static float eulers_constant(float precision) {
-            float e = 1.0;
-            float factorial = 1.0;
+            float e = 1.0f;
+            float factorial = 1.0f;
             int n = 1;
             
-            while ((1.0 / factorial) >= precision) {
+            while ((1.0f / factorial) >= precision) {
                 factorial *= n;
-                e += (1.0 / factorial);
+                e += (1.0f / factorial);
                 n++;
             }
             return e;
@@ -34,8 +34,8 @@ namespace firstsample
         }
 
         public static float exp_approx(int x, float precision) {
-            float sum = 1.0;
-            float term = 1.0;
+            float sum = 1.0f;
+            float term = 1.0f;
             int n = 1;
 
             while (term >= precision) {
@@ -51,7 +51,7 @@ namespace firstsample
         }
 
         public static bool near(int x, int y, float closeness) {
-            return abs(x - y) <= closeness * fmax(abs(x), abs(y));
+            return abs(x - y) <= closeness * Math.Max(abs(x), abs(y));
         }
 
         public static double degrees_to_radians(int degrees) {
@@ -60,13 +60,13 @@ namespace firstsample
 
         public static float sine(int x, float precision) {
             double radians = degrees_to_radians(x);
-            float term = radians;
-            float sum = radians;
+            float term = (float)radians;
+            float sum = (float)radians;
             int n = 1;
             int sign = -1;
 
-            while (fabs(term) > precision) {
-                term *= radians * radians / ((2 * n) * (2 * n + 1));
+            while (Math.Abs(term) > precision) {
+                term *= (float)(radians * radians / ((2 * n) * (2 * n + 1)));
                 sum += sign * term;
                 sign *= -1;
                 n++;
@@ -75,49 +75,48 @@ namespace firstsample
         }
 
         public static float square_root(int x, float precision) {
-            if (x < 0) return 0.0;
+            if (x < 0) return 0.0f;
 
-            float lower_bound = 0.0;
-            float upper_bound = fmax(1, x);
+            float lower_bound = 0.0f;
+            float upper_bound = Math.Max(1, x);
             float mid;
 
             while (upper_bound - lower_bound > precision) {
-                mid = (lower_bound + upper_bound) / 2.0;
+                mid = (lower_bound + upper_bound) / 2.0f;
                 if (mid * mid < x) {
                     lower_bound = mid;
                 } else {
                     upper_bound = mid;
                 }
             }
-            return (lower_bound + upper_bound) / 2.0;
+            return (lower_bound + upper_bound) / 2.0f;
         }
 
         public static float ln(float x, float precision) {
-            if (x <= 0) return 0.0;
+            if (x <= 0) return 0.0f;
 
-            float lower_bound = 0.0;
+            float lower_bound = 0.0f;
             float upper_bound = x;
             float mid;
 
             while (upper_bound - lower_bound > precision) {
-                mid = (lower_bound + upper_bound) / 2.0;
-                if (exp_approx(mid, precision) < x) {
+                mid = (lower_bound + upper_bound) / 2.0f;
+                if (exp_approx((int)mid, precision) < x) {
                     lower_bound = mid;
                 } else {
                     upper_bound = mid;
                 }
             }
-            return (lower_bound + upper_bound) / 2.0;
+            return (lower_bound + upper_bound) / 2.0f;
         }
 
-        public static void main() {
-            printf("Square root of 2: %f\n", square_root(2, 0.000001));
-            printf("Sine of 45 degrees: %f\n", sine(45, 0.000001));
-            printf("Sine of 90 degrees: %f\n", sine(90, 0.000001));
-            printf("Sine of 0 degrees: %f\n", sine(0, 0.000001));
-            printf("Natural logarithm of e: %f\n", ln(2.71828, 0.000001));
-            printf("Natural logarithm of 1: %f\n", ln(1, 0.000001));
+        public static void Main() {
+            Console.WriteLine("Square root of 2: " + square_root(2, 0.000001f));
+            Console.WriteLine("Sine of 45 degrees: " + sine(45, 0.000001f));
+            Console.WriteLine("Sine of 90 degrees: " + sine(90, 0.000001f));
+            Console.WriteLine("Sine of 0 degrees: " + sine(0, 0.000001f));
+            Console.WriteLine("Natural logarithm of e: " + ln(2.71828f, 0.000001f));
+            Console.WriteLine("Natural logarithm of 1: " + ln(1, 0.000001f));
         }
-
     }
 }

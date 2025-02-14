@@ -1,5 +1,7 @@
 using System;
 
+namespace firstsample
+{
 class AverageOfSquares
 {
     public static float average_of_squares0(int n)
@@ -30,4 +32,5 @@ class AverageOfSquares
         s = average_of_squares1(6);
         Console.WriteLine(s);
     }
+}
 }

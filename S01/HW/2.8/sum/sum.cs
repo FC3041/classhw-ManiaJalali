@@ -1,5 +1,7 @@
 using System;
 
+namespace sum
+{
 public class sum
 {
     public static int compute_sum(int n) 
@@ -20,4 +22,5 @@ public class sum
             Console.WriteLine(i + "     " +  compute_sum(i));
         }
     }
+}
 }

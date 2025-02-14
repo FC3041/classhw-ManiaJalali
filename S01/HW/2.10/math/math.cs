@@ -1,88 +1,190 @@
 using System;
 
-class Mathh
+namespace sum
 {
-    public static double Factorial(int n)
+class Program
+{
+    static void Main()
     {
-        if (n == 0) return 1;
-        double result = 1;
-        for (int i = 1; i <= n; i++)
-        {
-            result *= i;
-        }
-        return result;
+        float exam_it = SquareRoot(2, 0.000001f);
+        Console.WriteLine(exam_it);
+        Console.WriteLine(Sin(45, 0.000001f));  
+        Console.WriteLine(Sin(90, 0.000001f));  
+        Console.WriteLine(Sin(0, 0.000001f));
+        Console.WriteLine(Root(8, 3, 0.000001f));
+        Console.WriteLine(Ln(Math.E, 0.000001f));
+        Console.WriteLine(Ln(1, 0.000001f));
     }
 
-    public static double EulersConstant(double precision)
+    static float EulersConstant(float precision)
     {
-        double e = 1.0;
-        int n = 1;
-        while (1.0 / Factorial(n) > precision)
+        int n = (int)(1 / precision);
+        int g = 1;
+        while (n > 10)
         {
-            e += 1.0 / Factorial(n);
+            n /= 10;
+            g++;
+        }
+        int factorial = 1;
+        n = 1;
+        float e = 1;
+        while (1.0f / factorial >= precision)
+        {
+            factorial *= n;
             n++;
+            e += 1.0f / factorial;
         }
         return e;
     }
 
-    public static double Exp(double x, double precision)
+    static int Power(int x, int y)
     {
-        double sum = 1.0;
-        double term = 1.0;
-        int n = 1;
-        while (term > precision)
+        int p = 1;
+        if (y >= 0)
         {
-            term = term * x / n;
-            sum += term;
+            for (int i = 0; i < y; i++)
+                p *= x;
+        }
+        return p;
+    }
+
+    static int Factorial(int n)
+    {
+        int f = 1;
+        if (n <= 1)
+            f = 1;
+        for (int i = 1; i <= n; i++)
+            f *= i;
+        return f;
+    }
+
+    static int Exp(int x, int precision)
+    {
+        int sum = 0;
+        int n = 1 / precision;
+        int g = 1;
+        while (n > 10)
+        {
+            n /= 10;
+            g++;
+        }
+        n = 0;
+        while (Power(x, n) / Factorial(n) >= precision)
+        {
+            sum += Power(x, n) / Factorial(n);
             n++;
         }
         return sum;
     }
 
-    public static double Sin(double degrees, double precision)
+    static float Exp2(int x, float precision)
     {
-        double radians = degrees * Math.PI / 180;
-        double sum = radians;
-        double term = radians;
-        int n = 1;
-        while (Math.Abs(term) > precision)
+        int n = (int)(1 / precision);
+        int g = 1;
+        while (n > 10)
         {
-            term = -term * radians * radians / ((2 * n) * (2 * n + 1));
+            n /= 10;
+            g++;
+        }
+        float sum = 0;
+        float term = 1;
+        n = 1;
+        while (term >= precision)
+        {
             sum += term;
+            term *= x / n;
             n++;
         }
         return sum;
     }
 
-    public static double SquareRoot(double x, double precision)
+    static int Abs(int x)
     {
         if (x < 0)
-            Console.WriteLine("x must not be negative");
-        double lowerBound = 0;
-        double upperBound = x;
-        double mid = 0;
-        while ((upperBound - lowerBound) > precision)
-        {
-            mid = (lowerBound + upperBound) / 2;
-            if (mid * mid > x)
-            {
-                upperBound = mid;
-            }
-            else
-            {
-                lowerBound = mid;
-            }
-        }
-        return mid;
+            return -x;
+        return x;
     }
 
-    static void Main()
+    static bool Near(int x, int y)
     {
-        Console.WriteLine($"Euler's constant (precision 0.0001): {EulersConstant(0.0001)}");
-        Console.WriteLine($"exp(1, 0.000001): {Exp(1, 0.000001)}");
-        Console.WriteLine($"exp(2, 0.000001): {Exp(2, 0.000001)}");
-        Console.WriteLine($"sin(45 degrees, 0.0001): {Sin(45, 0.0001)}");
-        Console.WriteLine($"sin(90 degrees, 0.0001): {Sin(90, 0.0001)}");
-        Console.WriteLine($"Square root of 2 (precision 0.000001): {SquareRoot(2, 0.000001)}");
+        float closeness = 0.001f;
+        return (Abs(x - y) <= closeness * Math.Max(Abs(x), Abs(y)));
     }
+
+    static double DegreesToRadians(int degrees)
+    {
+        double radians = (degrees * 3.14) / 180;
+        return radians;
+    }
+
+    static double Sin(int x, float precision)
+    {
+        double j = DegreesToRadians(x);
+        double term = j;
+        double sum = j;
+        int n = 1;
+        int sign = -1;
+        while (Math.Abs(term) > precision)
+        {
+            term *= j * j / ((2 * n) * (2 * n + 1));
+            sum += sign * term;
+            sign *= -1;
+            n++;
+        }
+        return sum;
+    }
+
+    static float SquareRoot(int x, float precision)
+    {
+        if (x < 0)
+            return 0;
+        float low = 0;
+        float high = Math.Max(1, x);
+        float mid;
+        while (high - low > precision)
+        {
+            mid = (low + high) / 2;
+            if (mid * mid < x)
+                low = mid;
+            else
+                high = mid;
+        }
+        return (low + high) / 2;
+    }
+
+    static float Root(int x, int n, float precision)
+    {
+        float low = 0;
+        float high = Math.Max(1, x);
+        float result;
+        while (high - low > precision)
+        {
+            float mid = (low + high) / 2;
+            if (Math.Pow(mid, n) < x)
+                low = mid;
+            else
+                high = mid;
+        }
+        result = (low + high) / 2;
+        return result;
+    }
+
+    static float Ln(double x, float precision)
+    {
+        float low = 0;
+        float high = (float)x;
+        float mid;
+        if (x <= 0)
+            return 0;
+        while (high - low > precision)
+        {
+            mid = (low + high) / 2;
+            if (Exp2((int)mid, precision) < x)
+                low = mid;
+            else
+                high = mid;
+        }
+        return (low + high) / 2;
+    }
+}
 }

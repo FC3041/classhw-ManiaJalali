@@ -1,21 +1,25 @@
 using System;
 
+namespace firstsample
+{
 public class CompChange
 {
     public static void ComputeChange(int cents)
     {
-        int quarters = cents / 25;
-        cents %= 25;
-        int dimes = cents / 10;
-        cents %= 10;
-        int nickels = cents / 5;
-        cents %= 5;
-        int pennies = cents;
+        int change = 100 - cents;
+        int quarters = change / 25;
+        change %= 25;
+        int dimes = change / 10;
+        change %= 10;
+        int nickels = change / 5;
+        change %= 5;
+        int pennies = change;
 
-        Console.Write(quarters + "quarters" + dimes + "dimes" + nickels + "nickels" + pennies + "pennies");
+        Console.Write(quarters + " : quarters\n" + dimes + " : dimes\n" + nickels + " : nickels\n" + pennies + " : pennies");
     }
     public static void Main()
     {
         ComputeChange(8);
     }
+}
 }
