@@ -1,5 +1,7 @@
 using System;
 
+namespace firstsample
+{
 class Program
 {
     static bool IsDivisible(int a, int b)
@@ -28,4 +30,5 @@ class Program
             }
         }
     }
+}
 }

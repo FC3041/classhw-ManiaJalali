@@ -1,5 +1,7 @@
 using System;
 
+namespace firstsample
+{
 class Fibo
 {
     public static int fibonatchi(int n)
@@ -19,4 +21,5 @@ class Fibo
             Console.WriteLine("output " + i + " : " + a); 
         }
     }
+}
 }

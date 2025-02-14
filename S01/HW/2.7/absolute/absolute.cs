@@ -1,4 +1,7 @@
 using System;
+
+namespace firstsample
+{
 public class Program
 {
     public static int absolute_value(int x)
@@ -12,4 +15,5 @@ public class Program
         int a = absolute_value(-6);
         Console.WriteLine(a);
     }
+}
 }

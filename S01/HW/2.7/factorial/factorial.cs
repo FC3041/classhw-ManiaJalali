@@ -1,5 +1,7 @@
 using System;
 
+namespace firstsample
+{
 class factorial
 {
     public static double Factorial(int n)
@@ -42,4 +44,5 @@ class factorial
             }
         }
     }
+}
 }
