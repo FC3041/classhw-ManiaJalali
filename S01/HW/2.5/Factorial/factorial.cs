@@ -1,5 +1,7 @@
 using System;
 
+namespace h
+{
 public class Factor
 {
     public static int factorial(int n)
@@ -20,4 +22,5 @@ public class Factor
             Console.Write(F + "\n");
         }
     }
+}
 }

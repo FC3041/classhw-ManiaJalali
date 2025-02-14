@@ -1,4 +1,7 @@
 using System;
+
+namespace h
+{
 public class pow
 {
     public static int power(int x, int y)
@@ -17,4 +20,5 @@ public class pow
         int result = power(2, 3); 
         Console.Write(result);
     }
+}
 }

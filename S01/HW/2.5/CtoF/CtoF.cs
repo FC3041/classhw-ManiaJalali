@@ -1,5 +1,7 @@
 using System;
 
+namespace h
+{
 class CelsiustoFahrenheit
 {
     public static void ctof(int C)
@@ -11,4 +13,5 @@ class CelsiustoFahrenheit
     {
         ctof(54);
     }
+}
 }

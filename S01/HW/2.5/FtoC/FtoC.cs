@@ -1,5 +1,7 @@
 using System;
 
+namespace h
+{
 class FahrenheittoCelsius
 {
     public static void ftoc(int F)
@@ -12,4 +14,5 @@ class FahrenheittoCelsius
     {
         ftoc(50);
     }
+}
 }
