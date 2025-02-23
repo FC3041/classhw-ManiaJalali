@@ -31,7 +31,9 @@ public:
         stringcpy(m_LastName, lname);
     }
     ~Student()
-    {}
+    {
+        std::cout << "Deleted successfully."<<endl;
+    }
     double GetGPA()
     {
         double sumGrade = 0;
