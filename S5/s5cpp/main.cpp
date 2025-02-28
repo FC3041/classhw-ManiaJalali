@@ -1,6 +1,4 @@
 #include<iostream>
-// #include<string>
-// #include<vector>
 using namespace std;
 
 class Vector_int
@@ -48,12 +46,7 @@ class Vector_int
 
     int size()
     {
-        int count = 0, i = 0;
-        while(vector_array[i] != '\0')
-        {
-            count++;
-        }
-        return count;
+        return size_vector;
     }
 
     int capacity() const
@@ -69,6 +62,11 @@ class Vector_int
         }
         cout<<"false"<<endl;
         return size_vector == 0;
+    }
+
+    int at(int n)
+    {
+        return vector_array[n];
     }
 
     void insert(int place, int input)
@@ -129,10 +127,14 @@ class String
 
     int size_string;
     char* string_array;
-    String()
+    String(const char* s)
     {
-        size_string = 0;
-        string_array = nullptr;
+        size_string = string_size(s);
+        string_array = new char[size_string];
+        for (int i = 0; i < size_string; i++)
+        {
+            string_array[i] = s[i];
+        }
     }
 
     ~String()
@@ -151,8 +153,13 @@ class String
 
     int size()
     {
+        return size_string;
+    }
+
+    int string_size(const char* s)
+    {
         int count = 0, i = 0;
-        while(string_array[i] != '\0')
+        while(s[i] != '\0')
         {
             count++;
         }
@@ -198,24 +205,30 @@ class String
 int main()
 {
     int nums[] = {1, 2, 3} , a;
-    Vector_int vec;
+    Vector_int vec;//todo1
 
     vec.push_back(4);
-    vec.push_back(3);
+    vec.push_back(3);//todo2
     vec.push_back(12);
     vec.print();
-    vec.insert(1, 5);
+    vec.insert(1, 5);//todo5
     vec.push_back(7);
+    cout << vec.size() << endl;//todo3
     vec.print();
     vec.empty();
-    vec.erase(2);
+    vec.erase(2);//todo6
     vec.print();
-    vec.clear();
+    cout <<"size: "<< vec.size() << endl;
+    cout <<"capacity: "<< vec.capacity() << endl;//todo7
+    cout << vec.at(3) << endl; //todo4
+    vec.clear();//todo8
     vec.print();
     vec.empty();
 
-    string name2;
-    name2.assign("mozhdeh"); // TODO3
+    string name2; // todo2
+    string name("ali"); //todo1
+    cout<< name.c_str()<<endl; 
+    name2.assign("mozhdeh");  // todo3
     cout << name2.c_str() << ":" << name2.size() << endl; // TODO 4, 5
     name2.append(" + "); // TODO 6
     name2.append(name2); // TODO 7
@@ -230,7 +243,7 @@ int main()
 //     nums.push_back(5); // TODO2
 //     nums.push_back(10);
 //     for(int i=0; i<nums.size(); i++)  // TODO3
-//         cout << nums.at(i) << endl; // TODO4
+//         cout << nums.at(i) << endl; // TODO4 
 //     // cout << nums[i] << endl;
 //     //nums.insert(0, 2); // 5, 10 ==> 2, 5, 10
 //     nums.insert(nums.begin(), 2); // 5, 10 ==> 2, 5, 10
@@ -246,7 +259,7 @@ int main()
 //     return 0;
 // }    
 
-// int main1()
+// int main()
 // {
 //     string name("ali"); // TODO1
 //     string name2; // TODO2
